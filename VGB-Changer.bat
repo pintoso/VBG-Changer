@@ -1,7 +1,7 @@
 @echo off
 
 mode con: cols=40 lines=13
-title °          BG Changer          °
+title Â°          BG Changer          Â°
 
 REM Check if it is running as admin
 >nul 2>&1 net session || (
@@ -12,7 +12,7 @@ REM Check if it is running as admin
 	echo.
 	echo.
 	echo.
-    echo   °°±±²  Starting as admin....   ²±±°°
+    echo   Â°Â°Â±Â±Â²  Starting as admin....   Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo.
@@ -62,7 +62,7 @@ if errorlevel 1 (
 	echo.
 	echo.
 	echo.
-    echo          °°±±² BG CHANGER ²±±°°
+    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo.
@@ -92,7 +92,7 @@ if not defined riotPath (
 	echo.
 	echo.
 	echo.
-    echo          °°±±² BG CHANGER ²±±°°
+    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo.
@@ -110,7 +110,7 @@ if not exist "%riotPath%" (
 	echo.
 	echo.
 	echo.
-    echo          °°±±² BG CHANGER ²±±°°
+    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo               Invalid Path
@@ -128,7 +128,7 @@ if not "%riotPath:~-10%"=="Riot Games" (
 	echo.
 	echo.
 	echo.
-    echo          °°±±² BG CHANGER ²±±°°
+    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo               Invalid Path
@@ -146,7 +146,7 @@ if not exist "%riotPath%\VALORANT" (
 	echo.
 	echo.
 	echo.
-    echo          °°±±² BG CHANGER ²±±°°
+    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo               Invalid Path
@@ -185,7 +185,7 @@ if exist "%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.m
 	echo.
 	echo.
 	echo.
-    echo          °°±±² BG CHANGER ²±±°°
+    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo                 Backing up
@@ -199,7 +199,7 @@ if exist "%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.m
 	echo.
 	echo.
 	echo.
-    echo          °°±±² BG CHANGER ²±±°°
+    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	echo.
 	echo.
 	echo                 Backing up
@@ -219,7 +219,7 @@ for %%N in ("%~dp0\wallpaper\*.mp4") do (
         echo.
         echo.
         echo.
-        echo          °°±±² BG CHANGER ²±±°°
+        echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
         echo.
         echo.
         echo                  Renaming
@@ -234,7 +234,7 @@ for %%N in ("%~dp0\wallpaper\*.mp4") do (
         echo.
         echo.
         echo.
-        echo          °°±±² BG CHANGER ²±±°°
+        echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
         echo.
         echo.
         echo            Wallpaper renamed.
@@ -269,9 +269,9 @@ for /l %%i in (20,-1,1) do (
 		echo.
 		echo.
 		echo.
-		echo          °°±±² BG CHANGER ²±±°°
+		echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 	    echo.
-		echo           Aguardando VALORANT.
+		echo             Waiting VALORANT.
 		echo.
 		echo                 { %%i }
 		echo.
@@ -295,9 +295,9 @@ if %opened% == "true" (
             echo.
             echo.
             echo.
-            echo          °°±±² BG CHANGER ²±±°°
+            echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
             echo.
-            echo           Aguardando VALORANT.
+            echo             Waiting VALORANT.
             echo.
             echo                 { %%i }
             echo.
@@ -324,7 +324,7 @@ echo.
 echo.
 echo.
 echo.
-echo          °°±±² BG CHANGER ²±±°°
+echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 echo.
 echo.
 echo                 Copying!
@@ -351,7 +351,7 @@ if not exist "%~dp0\.temp\check_valorant_close.bat" (
 		echo.
 		echo.
 		echo.
-		echo          °°±±² BG CHANGER ²±±°°
+		echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 		echo.
 		echo.
 		echo                 Finishing!
@@ -372,7 +372,7 @@ if not exist "%~dp0\.temp\check_valorant_close.bat" (
 		echo.
 		echo.
 		echo.
-		echo          °°±±² BG CHANGER ²±±°°
+		echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
 		echo.
 		echo.
 		echo             Wallpaper Applied!
