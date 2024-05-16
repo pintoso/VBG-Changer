@@ -164,15 +164,25 @@ set "maxNumber=0"
 
 if exist "%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.mp4" (
     for %%F in ("%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.mp4") do (
-        REM Obtem o numero do arquivo atual
-        for /f "tokens=2 delims=_" %%A in ("%%~nF") do (
-            REM Compara o numero atual com o maior numero encontrado ate agora
-            if %%A gtr !maxNumber! (
-                REM Define o wallpaper mais atualizado
-                set "maxFile=%%~F"
-                set "maxFileName=%%~nxF"
-                set "maxNumber=%%A"
+        set "fileName=%%~nxF"
+        set "prefix=!fileName:~0,4!"
+		REM Checa o prefixo "VCT_" e extrai o terceiro número
+        if "!prefix!"=="VCT_" (
+            for /f "tokens=3 delims=_" %%A in ("%%~nF") do (
+                set "currentNumber=%%A"
             )
+        ) else (
+            REM Se não for um homescreen "VCT_", extrai o segundo número
+            for /f "tokens=2 delims=_" %%A in ("%%~nF") do (
+                set "currentNumber=%%A"
+            )
+        )
+
+        REM Compara os números e usa o wallpaper mais atualizado
+        if !currentNumber! gtr !maxNumber! (
+            set "maxFile=%%~F"
+            set "maxFileName=%%~nxF"
+            set "maxNumber=!currentNumber!"
         )
     )
 
@@ -337,49 +347,81 @@ goto :check_process
 
 :check_process
 REM Uma forma funcional alternativa usando powershell de criar e escrever codigo em outro .bat apartir de um .bat
-REM Base64 do codigo do check_valorant_close.bat (decodificado: https://www.base64decode.net/decode/7NIv)
-set "base64=QGVjaG8gb2ZmDQoNCnNldGxvY2FsIGVuYWJsZWRlbGF5ZWRleHBhbnNpb24NCnNldCAicmlvdFBhdGg9Ig0Kc2V0ICJkcml2ZUxldHRlcnM9QyBEIEUgRiBHIEggSSBKIEsgTCBNIE4gTyBQIFEgUiBTIFQgVSBWIFcgWCBZIFoiDQoNCnNldCAicGF0aEZpbGU9JX5kcDBccGF0aC50eHQiDQoNCmlmIGV4aXN0ICIlcGF0aEZpbGUlIiAoDQogICAgc2V0IC9wICJyaW90UGF0aD0iIDwgIiVwYXRoRmlsZSUiDQopDQoNCmZvciAlJUQgaW4gKCVkcml2ZUxldHRlcnMlKSBkbyAoDQogICAgaWYgZXhpc3QgIiUlRDpcUmlvdCBHYW1lc1wiICgNCiAgICAgICAgc2V0ICJyaW90UGF0aD0lJUQ6XFJpb3QgR2FtZXMiDQogICAgICAgIGdvdG8gOmZvdW5kX2ZvbGRlcg0KICAgICkNCikNCjpmb3VuZF9mb2xkZXINCmVjaG8gJXJpb3RQYXRoJSA+ICIlcGF0aEZpbGUlIg0KDQpzZXQgIm1heEZpbGU9Ig0Kc2V0ICJtYXhOdW1iZXI9MCINCg0KUkVNIExvb3ANCmZvciAlJUYgaW4gKCIlcmlvdFBhdGglXFZBTE9SQU5UXGxpdmVcU2hvb3RlckdhbWVcQ29udGVudFxNb3ZpZXNcTWVudVwqSG9tZXNjcmVlbi5tcDQiKSBkbyAoDQogICAgZm9yIC9mICJ0b2tlbnM9MiBkZWxpbXM9XyIgJSVBIGluICgiJSV+bkYiKSBkbyAoDQogICAgICAgIGlmICUlQSBndHIgIW1heE51bWJlciEgKA0KCQkJc2V0ICJtYXhGaWxlPSUlfkYiDQogICAgICAgICAgICBzZXQgIm1heEZpbGVOYW1lPSUlfm54RiINCiAgICAgICAgICAgIHNldCAibWF4TnVtYmVyPSUlQSINCiAgICAgICAgKQ0KICAgICkNCikNCg0KUkVNIExvb3AgVmFsb3JhbnQuZXhlDQp0aW1lb3V0IC90IDEwID5udWwNCjpjaGVja19wcm9jZXNzDQp0YXNrbGlzdCAvZmkgImltYWdlbmFtZSBlcSBWYWxvcmFudC5leGUiIDI+TlVMIHwgZmluZCAvaSAvbiAiVmFsb3JhbnQuZXhlIiA+TlVMDQppZiAiJUVSUk9STEVWRUwlIj09IjAiICgNCiAgICB0aW1lb3V0IC90IDEgPm51bA0KICAgIGdvdG8gOmNoZWNrX3Byb2Nlc3MNCikgZWxzZSAoDQogICAgY29weSAveSAiJX5kcDAuLlwudGVtcFx3YWxscGFwZXIub2xkXCVtYXhGaWxlTmFtZSUiICIlcmlvdFBhdGglXFZBTE9SQU5UXGxpdmVcU2hvb3RlckdhbWVcQ29udGVudFxNb3ZpZXNcTWVudSINCiAgICBleGl0DQopDQoNCg=="
+REM Base64 do codigo do check_valorant_close.bat (decodificado: https://www.base64decode.net/decode/8yDy)
+set "base64=QGVjaG8gb2ZmDQpSRU0gMS4wMQ0Kc2V0bG9jYWwgZW5hYmxlZGVsYXllZGV4cGFuc2lvbg0Kc2V0ICJyaW90UGF0aD0iDQpzZXQgImRyaXZlTGV0dGVycz1DIEQgRSBGIEcgSCBJIEogSyBMIE0gTiBPIFAgUSBSIFMgVCBVIFYgVyBYIFkgWiINCg0Kc2V0ICJwYXRoRmlsZT0lfmRwMFxwYXRoLnR4dCINCg0KaWYgZXhpc3QgIiVwYXRoRmlsZSUiICgNCiAgICBzZXQgL3AgInJpb3RQYXRoPSIgPCAiJXBhdGhGaWxlJSINCikNCg0KZm9yICUlRCBpbiAoJWRyaXZlTGV0dGVycyUpIGRvICgNCiAgICBpZiBleGlzdCAiJSVEOlxSaW90IEdhbWVzXCIgKA0KICAgICAgICBzZXQgInJpb3RQYXRoPSUlRDpcUmlvdCBHYW1lcyINCiAgICAgICAgZ290byA6Zm91bmRfZm9sZGVyDQogICAgKQ0KKQ0KOmZvdW5kX2ZvbGRlcg0KZWNobyAlcmlvdFBhdGglID4gIiVwYXRoRmlsZSUiDQoNCnNldCAibWF4RmlsZT0iDQpzZXQgIm1heE51bWJlcj0wIg0KDQpSRU0gTG9vcA0KZm9yICUlRiBpbiAoIiVyaW90UGF0aCVcVkFMT1JBTlRcbGl2ZVxTaG9vdGVyR2FtZVxDb250ZW50XE1vdmllc1xNZW51XCpIb21lc2NyZWVuLm1wNCIpIGRvICgNCiAgICBzZXQgImZpbGVOYW1lPSUlfm54RiINCiAgICBzZXQgInByZWZpeD0hZmlsZU5hbWU6fjAsNCEiDQogICAgDQogICAgaWYgIiFwcmVmaXghIj09IlZDVF8iICgNCiAgICAgICAgZm9yIC9mICJ0b2tlbnM9MyBkZWxpbXM9XyIgJSVBIGluICgiJSV+bkYiKSBkbyAoDQogICAgICAgICAgICBzZXQgImN1cnJlbnROdW1iZXI9JSVBIg0KICAgICAgICApDQogICAgKSBlbHNlICgNCiAgICAgICAgZm9yIC9mICJ0b2tlbnM9MiBkZWxpbXM9XyIgJSVBIGluICgiJSV+bkYiKSBkbyAoDQogICAgICAgICAgICBzZXQgImN1cnJlbnROdW1iZXI9JSVBIg0KICAgICAgICApDQogICAgKQ0KICAgIGlmICFjdXJyZW50TnVtYmVyISBndHIgIW1heE51bWJlciEgKA0KICAgICAgICBzZXQgIm1heEZpbGU9JSV+RiINCiAgICAgICAgc2V0ICJtYXhGaWxlTmFtZT0lJX5ueEYiDQogICAgICAgIHNldCAibWF4TnVtYmVyPSFjdXJyZW50TnVtYmVyISINCiAgICApDQopDQoNCg0KUkVNIExvb3AgVmFsb3JhbnQuZXhlDQp0aW1lb3V0IC90IDEwID5udWwNCjpjaGVja19wcm9jZXNzDQp0YXNrbGlzdCAvZmkgImltYWdlbmFtZSBlcSBWYWxvcmFudC5leGUiIDI+TlVMIHwgZmluZCAvaSAvbiAiVmFsb3JhbnQuZXhlIiA+TlVMDQppZiAiJUVSUk9STEVWRUwlIj09IjAiICgNCiAgICB0aW1lb3V0IC90IDEgPm51bA0KICAgIGdvdG8gOmNoZWNrX3Byb2Nlc3MNCikgZWxzZSAoDQogICAgY29weSAveSAiJX5kcDAuLlwudGVtcFx3YWxscGFwZXIub2xkXCVtYXhGaWxlTmFtZSUiICIlcmlvdFBhdGglXFZBTE9SQU5UXGxpdmVcU2hvb3RlckdhbWVcQ29udGVudFxNb3ZpZXNcTWVudSINCiAgICBleGl0DQopDQoNCg=="
+
+REM Versão do check_valorant_close.bat 
+set "version=1.01"
+
 if not exist "%~dp0\.temp\check_valorant_close.bat" (
-	REM Decodifica o base64 e coloca no arquivo check_valorant_close.bat
+    REM Decodifica o base64 como check_valorant_close.bat
     echo %base64% | powershell -command "$base64 = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($input)); Set-Content -Path ('%~dp0\.temp\check_valorant_close.bat') -Value $base64"
     for /l %%i in (5,-1,1) do (
-		timeout /t 1 >nul
-		cls
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo          °°±±² BG CHANGER ²±±°°
-		echo.
-		echo.
-		echo                Terminando!
-		echo.
-		echo                   { %%i }
-		echo.
-	)
-	goto :check_process
+        timeout /t 1 >nul
+        cls
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo          °°±±² BG CHANGER ²±±°°
+        echo.
+        echo.
+        echo                Terminando!
+        echo.
+        echo                   { %%i }
+        echo.
+    )
+    goto :check_process
 ) else (
+    REM Check the check_valorant_close.bat version
+    for /f "tokens=1* delims=:" %%G in ('findstr /n "^" "%~dp0\.temp\check_valorant_close.bat"') do (
+        if %%G equ 2 (
+            set "line=%%H"
+            set "line=!line:REM =!"
+            if "!line!" neq "%version%" (
+                echo %base64% | powershell -command "$base64 = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($input)); Set-Content -Path ('%~dp0\.temp\check_valorant_close.bat') -Value $base64"
+                for /l %%i in (5,-1,1) do (
+                    timeout /t 1 >nul
+                    cls
+                    echo.
+                    echo.
+                    echo.
+                    echo.
+                    echo.
+                    echo.
+                    echo          °°±±² BG CHANGER ²±±°°
+                    echo.
+                    echo.
+                    echo                Atualizando!
+                    echo.
+                    echo                   { %%i }
+                    echo.
+                )
+                goto :check_process
+            )
+        )
+    )
     set "script=%~dp0\.temp\check_valorant_close.bat"
-	REM Abre check_valorant_close.bat de fundo
-	for /l %%i in (15,-1,1) do (
-		timeout /t 1 >nul
-		cls
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo          °°±±² BG CHANGER ²±±°°
-		echo.
-		echo.
-		echo            Wallpaper Aplicado!
-		echo.
-		echo                  { %%i }
-		echo.
-	)
-	powershell Start-Process -Verb RunAs -WindowStyle hidden -FilePath '!script!'
+    REM Abre check_valorant_close.bat de fundo
+    for /l %%i in (15,-1,1) do (
+        timeout /t 1 >nul
+        cls
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo          °°±±² BG CHANGER ²±±°°
+        echo.
+        echo.
+        echo            Wallpaper Aplicado!
+        echo.
+        echo                  { %%i }
+        echo.
+    )
+    powershell Start-Process -Verb RunAs -WindowStyle hidden -FilePath '!script!'
 )
 exit
