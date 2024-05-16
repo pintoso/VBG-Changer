@@ -13,7 +13,7 @@ Made by a weird nerd 🐒 for all eboys and egirls around the world🌍.
 **Sorry for my bed england. I selled my wife for internet connection for play “vall rant”**
 
 
-- #### [❷PT-BR](https://github.com/pintoso/VBG-Changer/releases/download/1.0!/VGB-Changer.bat)
+- #### [❷PT-BR](https://github.com/pintoso/VBG-Changer/releases/download/1.01!/VGB-Changer.bat)
 **Come to brazil gringo**
 
 ## How to use
