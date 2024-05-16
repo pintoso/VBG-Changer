@@ -18,7 +18,7 @@ Made by a weird nerd 🐒 for all eboys and egirls around the world🌍.
 
 ## How to use
 1. Download & run
-2. Put some **1080p** video in the folder
+2. Put some **1080p**<sup>(H264)</sup> video in the folder
 3. Welcome
 
 >  _"Is that all?"  -"So easy? realy??"  -"Why do you do these things for free? wtf you are so dumb"_
