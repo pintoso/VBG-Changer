@@ -1,7 +1,7 @@
 @echo off
 
 mode con: cols=40 lines=13
-title Â°          BG Changer          Â°
+title °          BG Changer          °
 
 REM Check if it is running as admin
 >nul 2>&1 net session || (
@@ -12,7 +12,7 @@ REM Check if it is running as admin
 	echo.
 	echo.
 	echo.
-    echo   Â°Â°Â±Â±Â²  Starting as admin....   Â²Â±Â±Â°Â°
+    echo   °°±±²  Starting as admin....   ²±±°°
 	echo.
 	echo.
 	echo.
@@ -62,7 +62,7 @@ if errorlevel 1 (
 	echo.
 	echo.
 	echo.
-    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+    echo          °°±±² BG CHANGER ²±±°°
 	echo.
 	echo.
 	echo.
@@ -92,7 +92,7 @@ if not defined riotPath (
 	echo.
 	echo.
 	echo.
-    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+    echo          °°±±² BG CHANGER ²±±°°
 	echo.
 	echo.
 	echo.
@@ -110,7 +110,7 @@ if not exist "%riotPath%" (
 	echo.
 	echo.
 	echo.
-    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+    echo          °°±±² BG CHANGER ²±±°°
 	echo.
 	echo.
 	echo               Invalid Path
@@ -128,7 +128,7 @@ if not "%riotPath:~-10%"=="Riot Games" (
 	echo.
 	echo.
 	echo.
-    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+    echo          °°±±² BG CHANGER ²±±°°
 	echo.
 	echo.
 	echo               Invalid Path
@@ -146,7 +146,7 @@ if not exist "%riotPath%\VALORANT" (
 	echo.
 	echo.
 	echo.
-    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+    echo          °°±±² BG CHANGER ²±±°°
 	echo.
 	echo.
 	echo               Invalid Path
@@ -164,15 +164,25 @@ set "maxNumber=0"
 
 if exist "%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.mp4" (
     for %%F in ("%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.mp4") do (
-        REM Get the number of the current file
-        for /f "tokens=2 delims=_" %%A in ("%%~nF") do (
-            REM Compare with the highest number found
-            if %%A gtr !maxNumber! (
-                REM Set the most updated wallpaper
-                set "maxFile=%%~F"
-                set "maxFileName=%%~nxF"
-                set "maxNumber=%%A"
+        set "fileName=%%~nxF"
+        set "prefix=!fileName:~0,4!"
+		REM Check "VCT_" prefix and extract the third number
+        if "!prefix!"=="VCT_" (
+            for /f "tokens=3 delims=_" %%A in ("%%~nF") do (
+                set "currentNumber=%%A"
             )
+        ) else (
+            REM If it is not a "VCT_" homescreen extract the number second number
+            for /f "tokens=2 delims=_" %%A in ("%%~nF") do (
+                set "currentNumber=%%A"
+            )
+        )
+
+        REM Compare numbers and use the most updated wallpaper
+        if !currentNumber! gtr !maxNumber! (
+            set "maxFile=%%~F"
+            set "maxFileName=%%~nxF"
+            set "maxNumber=!currentNumber!"
         )
     )
 
@@ -185,7 +195,7 @@ if exist "%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.m
 	echo.
 	echo.
 	echo.
-    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+    echo          °°±±² BG CHANGER ²±±°°
 	echo.
 	echo.
 	echo                 Backing up
@@ -199,7 +209,7 @@ if exist "%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.m
 	echo.
 	echo.
 	echo.
-    echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+    echo          °°±±² BG CHANGER ²±±°°
 	echo.
 	echo.
 	echo                 Backing up
@@ -219,7 +229,7 @@ for %%N in ("%~dp0\wallpaper\*.mp4") do (
         echo.
         echo.
         echo.
-        echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+        echo          °°±±² BG CHANGER ²±±°°
         echo.
         echo.
         echo                  Renaming
@@ -234,7 +244,7 @@ for %%N in ("%~dp0\wallpaper\*.mp4") do (
         echo.
         echo.
         echo.
-        echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+        echo          °°±±² BG CHANGER ²±±°°
         echo.
         echo.
         echo            Wallpaper renamed.
@@ -253,7 +263,7 @@ REM Start Valorant
 start "" "%riotPath%\Riot Client\RiotClientServices.exe" --launch-product=valorant --launch-patchline=live
 
 
-REM Espera por ate 20 segundos pelo Valorant.exe
+REM Wait 20sec for Valorant.exe
 :prestart
 for /l %%i in (20,-1,1) do (
 	timeout /t 1 >nul
@@ -269,7 +279,7 @@ for /l %%i in (20,-1,1) do (
 		echo.
 		echo.
 		echo.
-		echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+		echo          °°±±² BG CHANGER ²±±°°
 	    echo.
 		echo             Waiting VALORANT.
 		echo.
@@ -280,7 +290,7 @@ for /l %%i in (20,-1,1) do (
 )
 exit
 
-REM Checa se os arquivos estao livres
+REM Check if the files are free
 :check_folder
 if %opened% == "true" (
     for /l %%i in (5,-1,1) do (
@@ -295,7 +305,7 @@ if %opened% == "true" (
             echo.
             echo.
             echo.
-            echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+            echo          °°±±² BG CHANGER ²±±°°
             echo.
             echo             Waiting VALORANT.
             echo.
@@ -324,7 +334,7 @@ echo.
 echo.
 echo.
 echo.
-echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
+echo          °°±±² BG CHANGER ²±±°°
 echo.
 echo.
 echo                 Copying!
@@ -337,49 +347,81 @@ goto :check_process
 
 :check_process
 REM A functional alternative using PowerShell to create and write code in another .bat from a .bat
-REM Base64 code of the check_valorant_close.bat (decoded: https://www.base64decode.net/decode/7NIv)
-set "base64=QGVjaG8gb2ZmDQoNCnNldGxvY2FsIGVuYWJsZWRlbGF5ZWRleHBhbnNpb24NCnNldCAicmlvdFBhdGg9Ig0Kc2V0ICJkcml2ZUxldHRlcnM9QyBEIEUgRiBHIEggSSBKIEsgTCBNIE4gTyBQIFEgUiBTIFQgVSBWIFcgWCBZIFoiDQoNCnNldCAicGF0aEZpbGU9JX5kcDBccGF0aC50eHQiDQoNCmlmIGV4aXN0ICIlcGF0aEZpbGUlIiAoDQogICAgc2V0IC9wICJyaW90UGF0aD0iIDwgIiVwYXRoRmlsZSUiDQopDQoNCmZvciAlJUQgaW4gKCVkcml2ZUxldHRlcnMlKSBkbyAoDQogICAgaWYgZXhpc3QgIiUlRDpcUmlvdCBHYW1lc1wiICgNCiAgICAgICAgc2V0ICJyaW90UGF0aD0lJUQ6XFJpb3QgR2FtZXMiDQogICAgICAgIGdvdG8gOmZvdW5kX2ZvbGRlcg0KICAgICkNCikNCjpmb3VuZF9mb2xkZXINCmVjaG8gJXJpb3RQYXRoJSA+ICIlcGF0aEZpbGUlIg0KDQpzZXQgIm1heEZpbGU9Ig0Kc2V0ICJtYXhOdW1iZXI9MCINCg0KUkVNIExvb3ANCmZvciAlJUYgaW4gKCIlcmlvdFBhdGglXFZBTE9SQU5UXGxpdmVcU2hvb3RlckdhbWVcQ29udGVudFxNb3ZpZXNcTWVudVwqSG9tZXNjcmVlbi5tcDQiKSBkbyAoDQogICAgZm9yIC9mICJ0b2tlbnM9MiBkZWxpbXM9XyIgJSVBIGluICgiJSV+bkYiKSBkbyAoDQogICAgICAgIGlmICUlQSBndHIgIW1heE51bWJlciEgKA0KCQkJc2V0ICJtYXhGaWxlPSUlfkYiDQogICAgICAgICAgICBzZXQgIm1heEZpbGVOYW1lPSUlfm54RiINCiAgICAgICAgICAgIHNldCAibWF4TnVtYmVyPSUlQSINCiAgICAgICAgKQ0KICAgICkNCikNCg0KUkVNIExvb3AgVmFsb3JhbnQuZXhlDQp0aW1lb3V0IC90IDEwID5udWwNCjpjaGVja19wcm9jZXNzDQp0YXNrbGlzdCAvZmkgImltYWdlbmFtZSBlcSBWYWxvcmFudC5leGUiIDI+TlVMIHwgZmluZCAvaSAvbiAiVmFsb3JhbnQuZXhlIiA+TlVMDQppZiAiJUVSUk9STEVWRUwlIj09IjAiICgNCiAgICB0aW1lb3V0IC90IDEgPm51bA0KICAgIGdvdG8gOmNoZWNrX3Byb2Nlc3MNCikgZWxzZSAoDQogICAgY29weSAveSAiJX5kcDAuLlwudGVtcFx3YWxscGFwZXIub2xkXCVtYXhGaWxlTmFtZSUiICIlcmlvdFBhdGglXFZBTE9SQU5UXGxpdmVcU2hvb3RlckdhbWVcQ29udGVudFxNb3ZpZXNcTWVudSINCiAgICBleGl0DQopDQoNCg=="
+REM Base64 code of the check_valorant_close.bat (decoded: https://www.base64decode.net/decode/8yDy)
+set "base64=QGVjaG8gb2ZmDQpSRU0gMS4wMQ0Kc2V0bG9jYWwgZW5hYmxlZGVsYXllZGV4cGFuc2lvbg0Kc2V0ICJyaW90UGF0aD0iDQpzZXQgImRyaXZlTGV0dGVycz1DIEQgRSBGIEcgSCBJIEogSyBMIE0gTiBPIFAgUSBSIFMgVCBVIFYgVyBYIFkgWiINCg0Kc2V0ICJwYXRoRmlsZT0lfmRwMFxwYXRoLnR4dCINCg0KaWYgZXhpc3QgIiVwYXRoRmlsZSUiICgNCiAgICBzZXQgL3AgInJpb3RQYXRoPSIgPCAiJXBhdGhGaWxlJSINCikNCg0KZm9yICUlRCBpbiAoJWRyaXZlTGV0dGVycyUpIGRvICgNCiAgICBpZiBleGlzdCAiJSVEOlxSaW90IEdhbWVzXCIgKA0KICAgICAgICBzZXQgInJpb3RQYXRoPSUlRDpcUmlvdCBHYW1lcyINCiAgICAgICAgZ290byA6Zm91bmRfZm9sZGVyDQogICAgKQ0KKQ0KOmZvdW5kX2ZvbGRlcg0KZWNobyAlcmlvdFBhdGglID4gIiVwYXRoRmlsZSUiDQoNCnNldCAibWF4RmlsZT0iDQpzZXQgIm1heE51bWJlcj0wIg0KDQpSRU0gTG9vcA0KZm9yICUlRiBpbiAoIiVyaW90UGF0aCVcVkFMT1JBTlRcbGl2ZVxTaG9vdGVyR2FtZVxDb250ZW50XE1vdmllc1xNZW51XCpIb21lc2NyZWVuLm1wNCIpIGRvICgNCiAgICBzZXQgImZpbGVOYW1lPSUlfm54RiINCiAgICBzZXQgInByZWZpeD0hZmlsZU5hbWU6fjAsNCEiDQogICAgDQogICAgaWYgIiFwcmVmaXghIj09IlZDVF8iICgNCiAgICAgICAgZm9yIC9mICJ0b2tlbnM9MyBkZWxpbXM9XyIgJSVBIGluICgiJSV+bkYiKSBkbyAoDQogICAgICAgICAgICBzZXQgImN1cnJlbnROdW1iZXI9JSVBIg0KICAgICAgICApDQogICAgKSBlbHNlICgNCiAgICAgICAgZm9yIC9mICJ0b2tlbnM9MiBkZWxpbXM9XyIgJSVBIGluICgiJSV+bkYiKSBkbyAoDQogICAgICAgICAgICBzZXQgImN1cnJlbnROdW1iZXI9JSVBIg0KICAgICAgICApDQogICAgKQ0KICAgIGlmICFjdXJyZW50TnVtYmVyISBndHIgIW1heE51bWJlciEgKA0KICAgICAgICBzZXQgIm1heEZpbGU9JSV+RiINCiAgICAgICAgc2V0ICJtYXhGaWxlTmFtZT0lJX5ueEYiDQogICAgICAgIHNldCAibWF4TnVtYmVyPSFjdXJyZW50TnVtYmVyISINCiAgICApDQopDQoNCg0KUkVNIExvb3AgVmFsb3JhbnQuZXhlDQp0aW1lb3V0IC90IDEwID5udWwNCjpjaGVja19wcm9jZXNzDQp0YXNrbGlzdCAvZmkgImltYWdlbmFtZSBlcSBWYWxvcmFudC5leGUiIDI+TlVMIHwgZmluZCAvaSAvbiAiVmFsb3JhbnQuZXhlIiA+TlVMDQppZiAiJUVSUk9STEVWRUwlIj09IjAiICgNCiAgICB0aW1lb3V0IC90IDEgPm51bA0KICAgIGdvdG8gOmNoZWNrX3Byb2Nlc3MNCikgZWxzZSAoDQogICAgY29weSAveSAiJX5kcDAuLlwudGVtcFx3YWxscGFwZXIub2xkXCVtYXhGaWxlTmFtZSUiICIlcmlvdFBhdGglXFZBTE9SQU5UXGxpdmVcU2hvb3RlckdhbWVcQ29udGVudFxNb3ZpZXNcTWVudSINCiAgICBleGl0DQopDQoNCg=="
+
+REM Check_valorant_close.bat Version
+set "version=1.01"
+
 if not exist "%~dp0\.temp\check_valorant_close.bat" (
-	REM Decode base64 and put in the check_valorant_close.bat file
+    REM Decode base64 and put in the check_valorant_close.bat file
     echo %base64% | powershell -command "$base64 = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($input)); Set-Content -Path ('%~dp0\.temp\check_valorant_close.bat') -Value $base64"
     for /l %%i in (5,-1,1) do (
-		timeout /t 1 >nul
-		cls
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
-		echo.
-		echo.
-		echo                 Finishing!
-		echo.
-		echo                   { %%i }
-		echo.
-	)
-	goto :check_process
+        timeout /t 1 >nul
+        cls
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo          °°±±² BG CHANGER ²±±°°
+        echo.
+        echo.
+        echo                 Finishing!
+        echo.
+        echo                   { %%i }
+        echo.
+    )
+    goto :check_process
 ) else (
+    REM Check the check_valorant_close.bat version
+    for /f "tokens=1* delims=:" %%G in ('findstr /n "^" "%~dp0\.temp\check_valorant_close.bat"') do (
+        if %%G equ 2 (
+            set "line=%%H"
+            set "line=!line:REM =!"
+            if "!line!" neq "%version%" (
+                echo %base64% | powershell -command "$base64 = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($input)); Set-Content -Path ('%~dp0\.temp\check_valorant_close.bat') -Value $base64"
+                for /l %%i in (5,-1,1) do (
+                    timeout /t 1 >nul
+                    cls
+                    echo.
+                    echo.
+                    echo.
+                    echo.
+                    echo.
+                    echo.
+                    echo          °°±±² BG CHANGER ²±±°°
+                    echo.
+                    echo.
+                    echo                 Updating!
+                    echo.
+                    echo                   { %%i }
+                    echo.
+                )
+                goto :check_process
+            )
+        )
+    )
     set "script=%~dp0\.temp\check_valorant_close.bat"
-	REM Run check_valorant_close.bat in background
-	for /l %%i in (15,-1,1) do (
-		timeout /t 1 >nul
-		cls
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo.
-		echo          Â°Â°Â±Â±Â² BG CHANGER Â²Â±Â±Â°Â°
-		echo.
-		echo.
-		echo             Wallpaper Applied!
-		echo.
-		echo                  { %%i }
-		echo.
-	)
-	powershell Start-Process -Verb RunAs -WindowStyle hidden -FilePath '!script!'
+    REM Run check_valorant_close.bat in background
+    for /l %%i in (15,-1,1) do (
+        timeout /t 1 >nul
+        cls
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo.
+        echo          °°±±² BG CHANGER ²±±°°
+        echo.
+        echo.
+        echo             Wallpaper Applied!
+        echo.
+        echo                  { %%i }
+        echo.
+    )
+    powershell Start-Process -Verb RunAs -WindowStyle hidden -FilePath '!script!'
 )
 exit
