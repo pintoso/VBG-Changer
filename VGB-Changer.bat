@@ -160,25 +160,16 @@ if not exist "%riotPath%\VALORANT" (
 echo %riotPath% > "%pathFile%"
 set "checka=false"
 set "maxFile="
-set "maxNumber=0"
+set "maxDate=0"
 
 if exist "%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.mp4" (
-    for %%F in ("%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.mp4") do (
-        set "fileName=%%~nxF"
-        set "prefix=!fileName:~0,4!"
-		REM Check "VCT_" prefix and extract the third number
-        if "!prefix!"=="VCT_" (
-            for /f "tokens=3 delims=_" %%A in ("%%~nF") do (
-                set "currentNumber=%%A"
-            )
-        ) else (
-            REM If it is not a "VCT_" homescreen extract the number second number
-            for /f "tokens=2 delims=_" %%A in ("%%~nF") do (
-                set "currentNumber=%%A"
-            )
-        )
+    REM Find the most updated file
+    for /f "delims=" %%F in ('powershell -command "Get-ChildItem '%riotPath%\VALORANT\live\ShooterGame\Content\Movies\Menu\*Homescreen.mp4' | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | ForEach-Object {$_.FullName}"') do (
+        set "maxFile=%%F"
+        for %%G in ("%%F") do set "maxFileName=%%~nxG"
+    )
 
-        REM Compare numbers and use the most updated wallpaper
+        REM Compare and use the most updated wallpaper
         if !currentNumber! gtr !maxNumber! (
             set "maxFile=%%~F"
             set "maxFileName=%%~nxF"
