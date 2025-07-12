@@ -7,18 +7,12 @@ Made by a weird nerd 🐒 for all eboys and egirls around the world🌍.
 
 ------------
 
-### DOWNLOAD OPTIONS
+- ### [➤ DOWNLOAD](https://github.com/pintoso/VBG-Changer/raw/refs/heads/main/VGB-Changer.bat)
 
-- #### [❶ENGLISH](https://github.com/pintoso/VBG-Changer/releases/latest/download/VGB-Changer.bat)
-**Sorry for my bed england. I selled my wife for internet connection for play “vall rant”**
-
-
-- #### [❷PT-BR](https://github.com/pintoso/VBG-Changer/releases/download/1.01!/VGB-Changer.bat)
-**Come to brazil gringo**
 
 ## How to use
 1. Download & run
-2. Put some **1080p**<sup>(H264)</sup> video in the folder
+2. Put some **1080p**<sup>(H264)</sup> video in the `wallpaper` folder
 3. Welcome
 
 >  _"Is that all?"  -"So easy? realy??"  -"Why do you do these things for free? wtf you are so dumb"_
