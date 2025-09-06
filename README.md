@@ -3,7 +3,7 @@ Putting a nearly naked 2D waifu into your favorite game? YES !!??
 
 ![](https://i.imgur.com/0OPYCR8.png)
 
-Made by a weird nerd 🐒 for all eboys and egirls around the world🌍.
+Made by a weird nerd 🐒 for all weird nerds around the world🌍.
 
 ------------
 
@@ -11,9 +11,10 @@ Made by a weird nerd 🐒 for all eboys and egirls around the world🌍.
 
 
 ## How to use
-1. Download & run
-2. Put some **1080p**<sup>(H264)</sup> video in the `wallpaper` folder
-3. Welcome
+Create a folder
+1. Download `VBG-Changer.bat` in a new folder
+3. Run
+4. Put some **1080p**<sup>(H264)</sup> video in the `wallpaper` folder
 
 >  _"Is that all?"  -"So easy? realy??"  -"Why do you do these things for free? wtf you are so dumb"_
 
@@ -30,15 +31,12 @@ Made by a weird nerd 🐒 for all eboys and egirls around the world🌍.
 - [x] **Customize whatever you want**, it's a batch script, you're free, the internet is free!
 
 
-## NERD FAQ MOMMENT
+## FAQ
 - Can I be banned?
->  Let me tell you a 😭 touching story ✍😖.......... poor Base64 Junior had a very bad computer 🖱⌨ that always crashed! One sad day while opening 😭 "Vall rant" a part of his HDD got corrupted, and by chance, it also corrupted the "Vall rant" folder..... "VonGuide" thought that poor Base64 Junior was trying 😢 to invade "hate games studios", so they banned him................... days later he came back😍 because it was impossible to differentiate whether he was a monster who replaced a video file or a poor 😞 boy who had problems ☹ with his computer... 💾
+>  It's safe. The tool just replaces a video file in a public folder, so... no ban risk.
 
-- Oooh my gud what's this Base64? I'm scared!
-> It's like Mario64, but older
-
-- How does that technique using Base64 code work? (nobody asked)
-> Ooooh, thank youu!!! for!! asking!!! anyway, creating other files using the batch script itself is a bit sad, but it's possible to invoke other Windows tools to help so I thought "hmmm why not store the code of the second batch script in Base64? and use PowerShell to decode it? pointing the output to the desired location of the file.bat?"
+- Oooh my gud what's this Base64 in the code? I'm scared!
+> It's a small .bat file to restore your original wallpaper when valorant closes. This method is used for user convenience, eliminating the need for extra downloads.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
