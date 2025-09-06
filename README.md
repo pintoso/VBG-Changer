@@ -11,7 +11,6 @@ Made by a weird nerd 🐒 for all weird nerds around the world🌍.
 
 
 ## How to use
-Create a folder
 1. Download `VBG-Changer.bat` in a new folder
 3. Run
 4. Put some **1080p**<sup>(H264)</sup> video in the `wallpaper` folder
