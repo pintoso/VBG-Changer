@@ -250,7 +250,7 @@ if not exist "%hashlistFile%" (
     )
 ) else (
     if defined customWallpaperHash (
-        findstr /x /c:"%customWallpaperHash%" "%hashlistFile%" >nul
+        powershell -NoProfile -ExecutionPolicy Bypass -Command "$content = Get-Content -LiteralPath '%hashlistFile%' -ErrorAction SilentlyContinue; if ($content -contains '%customWallpaperHash%') { exit 0 } else { exit 1 }" >nul
         if errorlevel 1 (
             set "__HASH=%customWallpaperHash%"
             set "__HASHFILE=%hashlistFile%"
@@ -319,7 +319,7 @@ REM Check if hash is custom
 if exist "%hashlistFile%" (
   if defined gameFileHash (
     if not "%gameFileHash%"=="ERROR" (
-      findstr /x /c:"%gameFileHash%" "%hashlistFile%" >nul
+      powershell -NoProfile -ExecutionPolicy Bypass -Command "$content = Get-Content -LiteralPath '%hashlistFile%' -ErrorAction SilentlyContinue; if ($content -contains '%gameFileHash%') { exit 0 } else { exit 1 }" >nul
       if not errorlevel 1 set "isCustom=1"
     )
   )
