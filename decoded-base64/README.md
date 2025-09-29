@@ -1,8 +1,8 @@
-# Monitor Script ([`monitor_valorant_close.bat`](https://github.com/pintoso/VBG-Changer/blob/main/decoded-base64/monitor_valorant_close.bat))
+# Monitor Script ([`monitor_valorant_close.bat`](/decoded-base64/monitor_valorant_close.bat))
 
-This script's code is stored in Base64 format inside the main [`VGB-Changer.bat`](https://github.com/pintoso/VBG-Changer/blob/main/VGB-Changer.bat) file. It is decoded and executed automatically.
+This script's code is stored in Base64 format inside the main [`VGB-Changer.bat`](/VGB-Changer.bat) file. It is decoded and executed automatically.
 
-This [source code](https://github.com/pintoso/VBG-Changer/blob/main/decoded-base64/monitor_valorant_close.bat) is provided for **inspection and transparency**.
+This [source code](/decoded-base64/monitor_valorant_close.bat) is provided for **inspection and transparency**.
 
 ---
 
