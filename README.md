@@ -16,7 +16,7 @@ Putting a nearly naked 2D waifu into your favorite game? YES !!??
 >  _"Is that all?"  -"So easy? realy??"  -"Why do you do these things for free? wtf you are so dumb"_
 
 ## Preview
-![](https://i.imgur.com/1ocw7Pg.png) ![](https://i.imgur.com/LaIwuWV.png) ![](https://i.imgur.com/P2TyZ1x.png)
+![](https://i.imgur.com/1ocw7Pg.png) ![](https://i.imgur.com/P2TyZ1x.png)
 
 ## Features
 - [x] Extremely **lightweight and fast** (20kb)
