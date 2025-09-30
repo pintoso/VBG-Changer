@@ -414,14 +414,14 @@ if "%opened%"=="true" (
     set "check_folder=!gameMenuPath!"
     
     setlocal EnableDelayedExpansion
-    for /l %%i in (5,-1,1) do (
+    for /l %%i in (15,-1,1) do (
         setlocal DisableDelayedExpansion
         robocopy "%check_folder%" "%check_folder%" /L >nul
         set "err_level=%errorlevel%"
         endlocal & set "err_level=%err_level%"
 
          if !err_level! LSS 8 (
-            timeout /t 1 >nul
+            timeout /t 2 >nul
             goto :copy_files
         ) else (
             call :display_header
@@ -437,40 +437,49 @@ if "%opened%"=="true" (
 
 
 :copy_files
-REM --- Apply wallpaper ---
-call :display_header
-echo.
-echo           Applying wallpaper...
-echo.
-setlocal DisableDelayedExpansion
-set "__SRC=%customWallpaper%"
-
-if not exist "%__SRC%" (
-    echo   [ERROR] Wallpaper file not found
-    endlocal
+    REM --- Apply wallpaper ---
+    call :display_header
+    echo.
+    echo           Applying wallpaper...
+    echo.
+    call :run_powershell_copy
     goto :check_process
-)
-
-REM Apply wallpaper to each file
-for %%F in ("%gameMenuPath%\*Homescreen*.mp4") do call :apply_one "%%~fF"
-
-endlocal
-goto :check_process
 
 
-:apply_one
-REM Copy file via PowerShell
-setlocal DisableDelayedExpansion
-set "__DST=%~1"
+:run_powershell_copy
+    REM --- Copy logic ---
+    setlocal DisableDelayedExpansion
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-  "try { Copy-Item -LiteralPath $env:__SRC -Destination $env:__DST -Force -ErrorAction Stop; exit 0 } catch { exit 1 }"
+    set "__SRC=%customWallpaper%"
+    set "__DEST_DIR=%gameMenuPath%"
 
-if errorlevel 1 echo     [ERROR] %~nx1
-if not errorlevel 1 echo     [OK] %~nx1
+    if not exist "%__SRC%" (
+        echo   [ERROR] Wallpaper file not found
+        endlocal
+        goto :eof
+    )
 
-endlocal
-goto :eof
+    REM Execute a single, optimized PowerShell
+    powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+        "$sourceFile = $env:__SRC; " ^
+        "$destDir = $env:__DEST_DIR; " ^
+        "try { " ^
+        "    Get-ChildItem -LiteralPath $destDir -Filter '*Homescreen*.mp4' -ErrorAction Stop | ForEach-Object { " ^
+        "        try { " ^
+        "            Copy-Item -LiteralPath $sourceFile -Destination $_.FullName -Force -ErrorAction Stop; " ^
+        "            Write-Host ('    [OK] ' + $_.Name) -ForegroundColor Green; " ^
+        "        } catch { " ^
+        "            Write-Host ('    [ERROR] ' + $_.Name) -ForegroundColor Red; " ^
+        "        } " ^
+        "    }; " ^
+        "    exit 0; " ^
+        "} catch { " ^
+        "    Write-Host ('[ERROR] Could not access game files.') -ForegroundColor Red; " ^
+        "    exit 1; " ^
+        "}"
+    
+    endlocal
+    goto :eof
 
 REM ##############################################################################
 
