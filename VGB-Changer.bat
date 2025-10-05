@@ -269,6 +269,14 @@ call :syncBackups
 
 timeout /t 2 >nul
 
+REM --- Kill Riot client Process ---
+call :display_header
+echo.
+echo          Closing Riot Client...
+echo.
+taskkill /F /IM "RiotClientServices.exe" >nul 2>&1
+timeout /t 1 >nul
+
 REM --- Start VALORANT ---
 set "opened=false"
 if defined launcherExePath (
@@ -421,7 +429,6 @@ if "%opened%"=="true" (
         endlocal & set "err_level=%err_level%"
 
          if !err_level! LSS 8 (
-            timeout /t 2 >nul
             goto :copy_files
         ) else (
             call :display_header
